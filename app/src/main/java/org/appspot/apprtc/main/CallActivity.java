@@ -128,6 +128,8 @@ public class CallActivity extends AppCompatActivity implements AppRTCClient.Sign
         rootEglBase = EglBase.create();
         binding.localVideoView.init(rootEglBase.getEglBaseContext(), null);
         binding.remoteVideoView.init(rootEglBase.getEglBaseContext(), null);
+        binding.localVideoView.setViewMovable(true);
+        binding.remoteVideoView.setViewMovable(false);
 
         binding.localVideoView.setZOrderMediaOverlay(true);
         binding.localVideoView.setEnableHardwareScaler(true);

@@ -57,6 +57,7 @@ public class SurfaceViewRenderer extends SurfaceView implements Callback, Callba
     private static final boolean MOVE_VIEW = false;
     private ValueAnimator zoomAnimator;
     private boolean isZoomed = false;
+    private boolean isMovable = false;
 
     public SurfaceViewRenderer(Context context) {
         super(context);
@@ -277,7 +278,7 @@ public class SurfaceViewRenderer extends SurfaceView implements Callback, Callba
         super.onTouchEvent(event);
         scaleGestureDetector.onTouchEvent(event);
         gestureDetector.onTouchEvent(event);
-        if (MOVE_VIEW) {
+        if (isMovable) {
             if (event.getPointerCount() > 1) {
                 isSingleTouch = false;
             } else {
@@ -305,6 +306,10 @@ public class SurfaceViewRenderer extends SurfaceView implements Callback, Callba
             }
         }
         return true;
+    }
+
+    public void setViewMovable(boolean enabled) {
+        this.isMovable = enabled;
     }
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
